@@ -70,6 +70,16 @@ function chek_project_success() {
             console.log("Client: " + CLIENT_INPUT.value);
             console.log("File: " + FILE_INPUT.value);
 
+            const VALID = document.querySelector(".ValidForms");
+
+            VALID.classList.toggle("titanic");
+
+            setTimeout(function() {
+                VALID.classList.toggle("titanic");
+            }, 3000);
+
+        
+
 
             TITLE_INPUT.value = "";
             CLIENT_INPUT.value = "";

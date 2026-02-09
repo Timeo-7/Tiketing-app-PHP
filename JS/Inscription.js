@@ -89,6 +89,16 @@ SUBMIT_CONNEXION.addEventListener("submit", function(event) {
         console.log("Client: " + PASSWORD_INPUT.value);
         console.log("Client: " + PASSWORD_VERIF.value);
 
+        const VALID = document.querySelector(".ValidForms");
+
+        VALID.classList.toggle("titanic");
+
+        setTimeout(function() {
+            VALID.classList.toggle("titanic");
+        }, 3000);
+
+        EMAIL_INPUT.value = "";
+
         EMAIL_INPUT.value = "";
         PASSWORD_INPUT.value = "";
         PASSWORD_VERIF.value = "";
