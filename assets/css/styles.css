@@ -235,6 +235,10 @@ h2 {
     justify-content: center;
 }
 
+.filters{
+    margin-top: 15px;
+}
+
 .filter{
     display: flex;
     flex-direction: row;
@@ -242,7 +246,8 @@ h2 {
 }
 .filter-btn-En-Cours,
 .filter-btn-Non-Traite,
-.filter-btn-Money{
+.filter-btn-Money,
+.filter-btn-Tous{
     background-color: lightcyan;
     margin: 10px;
 
@@ -263,7 +268,8 @@ h2 {
 .filter-btn:hover,
 .filter-btn-En-Cours:hover,
 .filter-btn-Non-Traite:hover,
-.filter-btn-Money:hover{
+.filter-btn-Money:hover,
+.filter-btn-Tous:hover{
     background-color: var(--accent-hover);
     box-shadow: var(--shadow-md);
     transform: translateY(-2px);
@@ -904,7 +910,8 @@ button:disabled {
 
     .filter-btn-En-Cours,
     .filter-btn-Non-Traite,
-    .filter-btn-Money {
+    .filter-btn-Money,
+    .filter-btn-Tous {
         width: 100%;
         text-align: center;
     }
@@ -994,5 +1001,11 @@ button:disabled {
 
     .Table-ticket {
         min-width: 700px;
+    }
+
+
+    .filters{
+        display: flex;
+        flex-direction: column;
     }
 }

@@ -11,12 +11,12 @@ $ticket = [
             "date" => "28/01/2026 12:06",
         ],
         [
-        "title" => "Ticket 2",
-        "client" => "Client 2",
-        "users" => "0x 🚹",
-        "statut" => "❌",
-        "facturable" => "—",
-        "date" => "27/01/2026 14:29",
+            "title" => "Ticket 2",
+            "client" => "Client 2",
+            "users" => "0x 🚹",
+            "statut" => "❌",
+            "facturable" => "—",
+            "date" => "27/01/2026 14:29",
         ],
     ];
 
@@ -87,9 +87,10 @@ $ticket = [
     <p>Tickets</p>
     <div class="filters-title"></div>
                 <div class="filters" aria-label="Filtres par genre">
-                    <button class="filter-btn-En-Cours" type="button">En cours</button>
-                    <button class="filter-btn-Non-Traite" type="button">Non traité</button>
-                    <button class="filter-btn-Money" type="button">Facturable</button>
+                    <a class="filter-btn-Tous" href="?filter=tous">Tous</a>
+                    <a class="filter-btn-En-Cours" href="?filter=en_cours">En cours</a>
+                    <a class="filter-btn-Non-Traite" href="?filter=non_traite">Non traité</a>
+                    <a class="filter-btn-Money" href="?filter=facturable">Facturable</a>
                 </div>
 
     <div class="table-responsive">
@@ -106,16 +107,70 @@ $ticket = [
             </thead>
 
             <tbody>
-                <?php foreach ($ticket as $t): ?>
-                    <tr onclick="location.href='./Tickets.php'" style="cursor:pointer;">
-                        <td><?= $t["title"] ?></td>
-                        <td><?= $t["client"] ?></td>
-                        <td><?= $t["users"] ?></td>
-                        <td class="Statut"><?= $t["statut"] ?></td>
-                        <td class="Money"><?= $t["facturable"] ?></td>
-                        <td><?= $t["date"] ?></td>
-                    </tr>
-                <?php endforeach; ?>
+                
+                <?php $filter = $_GET["filter"]; ?>
+
+                <?php if (is_null($filter) || $filter == "tous" ): ?>
+
+                    <?php foreach ($ticket as $t): ?>
+                        <tr onclick="location.href='./Tickets.php'" style="cursor:pointer;">
+                            <td><?= $t["title"] ?></td>
+                            <td><?= $t["client"] ?></td>
+                            <td><?= $t["users"] ?></td>
+                            <td class="Statut"><?= $t["statut"] ?></td>
+                            <td class="Money"><?= $t["facturable"] ?></td>
+                            <td><?= $t["date"] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+               
+                <?php endif; ?>
+
+
+                <?php if ($filter == "en_cours" ): ?>
+                    <?php foreach ($ticket as $t): ?>
+                        <?php if ($t['statut'] == '⏳'): ?>
+                            <tr onclick="location.href='./Tickets.php'" style="cursor:pointer;">
+                                <td><?= $t["title"] ?></td>
+                                <td><?= $t["client"] ?></td>
+                                <td><?= $t["users"] ?></td>
+                                <td class="Statut"><?= $t["statut"] ?></td>
+                                <td class="Money"><?= $t["facturable"] ?></td>
+                                <td><?= $t["date"] ?></td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
+                <?php if ($filter == "non_traite" ): ?>
+                    <?php foreach ($ticket as $t): ?>
+                        <?php if ($t['statut'] == '❌'): ?>
+                            <tr onclick="location.href='./Tickets.php'" style="cursor:pointer;">
+                                <td><?= $t["title"] ?></td>
+                                <td><?= $t["client"] ?></td>
+                                <td><?= $t["users"] ?></td>
+                                <td class="Statut"><?= $t["statut"] ?></td>
+                                <td class="Money"><?= $t["facturable"] ?></td>
+                                <td><?= $t["date"] ?></td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
+                <?php if ($filter == "facturable" ): ?>
+                    <?php foreach ($ticket as $t): ?>
+                        <?php if ($t['facturable'] == '🪙'): ?>
+                            <tr onclick="location.href='./Tickets.php'" style="cursor:pointer;">
+                                <td><?= $t["title"] ?></td>
+                                <td><?= $t["client"] ?></td>
+                                <td><?= $t["users"] ?></td>
+                                <td class="Statut"><?= $t["statut"] ?></td>
+                                <td class="Money"><?= $t["facturable"] ?></td>
+                                <td><?= $t["date"] ?></td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
             </tbody>
         </table>
     </div>

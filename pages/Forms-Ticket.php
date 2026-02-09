@@ -1,4 +1,17 @@
+<?php
 
+
+
+    $fs = new FormService($_POST);
+
+    /* Ajouter le forms à la liste */
+
+    // Ici je peux traiter mes données issues du formulaire en PHP.
+
+    
+
+
+?>
 
 
 

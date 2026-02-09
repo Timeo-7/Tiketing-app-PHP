@@ -1,6 +1,7 @@
 <?php
 
-class FormService {
+
+class TicketForm {
 
     public $title;
     public $client;
