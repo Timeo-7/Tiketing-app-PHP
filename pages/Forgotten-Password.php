@@ -29,6 +29,10 @@
             <a href="../index.php">Se connecter</a>
         </form>
 
+        <div class="ValidForms titanic">
+            <p>Email envoyé</p>
+        </div>
+
     </section>
 
     <script src="../JS/Forgotten-Password.js"></script>

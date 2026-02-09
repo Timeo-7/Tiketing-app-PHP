@@ -36,7 +36,14 @@
             <a href="./pages/Forgotten-Password.php">Forgotten password</a> 
         </form>
 
+
+        <div class="ValidForms titanic">
+            <p>Connexion réussie</p>
+        </div>
+        
     </section>
+
+    
 
     <script src="./JS/Connexion.js"></script>
 </body>

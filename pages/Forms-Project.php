@@ -66,6 +66,10 @@
             </form>
         </div>
 
+        <div class="ValidForms titanic">
+            <p>Formulaire envoyé</p>
+        </div>
+
 
     </section>
 

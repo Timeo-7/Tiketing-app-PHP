@@ -1,4 +1,4 @@
-console.log("Connexion is load.");
+console.log("Inscription is load.");
 
 
 function chek_connexion_success() {
@@ -92,6 +92,7 @@ SUBMIT_CONNEXION.addEventListener("submit", function(event) {
         const VALID = document.querySelector(".ValidForms");
 
         VALID.classList.toggle("titanic");
+        console.log("hi");
 
         setTimeout(function() {
             VALID.classList.toggle("titanic");

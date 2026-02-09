@@ -42,6 +42,10 @@
             <a href="../index.php">Se connecter</a>
         </form>
 
+        <div class="ValidForms titanic">
+            <p>Inscription réussie</p>
+        </div>
+
         <script src="../JS/Inscription.js"></script>
         
 </body>
