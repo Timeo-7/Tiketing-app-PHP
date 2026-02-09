@@ -84,7 +84,7 @@ $ticket = [
         
 
      <div class="cadre">
-    <p>Tickets</p>
+    <h3>Tickets</h3>
     <div class="filters-title"></div>
                 <div class="filters" aria-label="Filtres par genre">
                     <a class="filter-btn-Tous" href="?filter=tous">Tous</a>
