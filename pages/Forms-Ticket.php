@@ -1,3 +1,13 @@
+<?php
+
+$ticket = [
+
+]
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

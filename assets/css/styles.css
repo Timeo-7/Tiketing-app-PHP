@@ -235,6 +235,40 @@ h2 {
     justify-content: center;
 }
 
+.filter{
+    display: flex;
+    flex-direction: row;
+    
+}
+.filter-btn-En-Cours,
+.filter-btn-Non-Traite,
+.filter-btn-Money{
+    background-color: lightcyan;
+    margin: 10px;
+
+    margin-bottom: 24px;
+    padding: 12px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    align-self: flex-start;
+}
+
+.filter-btn:hover,
+.filter-btn-En-Cours:hover,
+.filter-btn-Non-Traite:hover,
+.filter-btn-Money:hover{
+    background-color: var(--accent-hover);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
 .cadre {
     background-color: var(--bg-secondary);
     display: flex;

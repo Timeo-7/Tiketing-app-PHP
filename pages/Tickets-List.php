@@ -34,40 +34,59 @@
 
     <section class="Tickets-List">
 
+        
+
         <div>
             <a class="new-ticket-button" href="./Forms-Ticket.php">+ New Ticket</a>
         </div>
            
+        
 
-        <div class="cadre">   
-            <p>Tickets</p>
+     <div class="cadre">
+    <p>Tickets</p>
+    <div class="filters-title"></div>
+                <div class="filters" aria-label="Filtres par genre">
+                    <button class="filter-btn-En-Cours" type="button">En cours</button>
+                    <button class="filter-btn-Non-Traite" type="button">Non traité</button>
+                    <button class="filter-btn-Money" type="button">Facturable</button>
+                </div>
 
-            <a class="tickets-fast-access" href="./Tickets.php" >
-                <p>Tickets 1</p>
-                <p>client 1</p>
-                
-                <ul>
-                    <li>2x🚹</li>
-                    <li>⏳</li>
-                    <li>🪙</li>
-                    <li>28/01/2026 12:06</li>
-                </ul>
-            </a>
+    <table class="Table-ticket" id="content">
+        <thead>
+            <tr>
+                <th>Ticket</th>
+                <th>Client</th>
+                <th>Utilisateurs</th>
+                <th>Statut</th>
+                <th>Paiement</th>
+                <th>Date</th>
+            </tr>
+        </thead>
 
-            <a class="tickets-fast-access" href="./Tickets.php" >
-                <p>Tickets 2</p>
-                <p>client 2</p>
-                
-                <ul>
-                    <li>0x🚹</li>
-                    <li>❌</li>
-                    <li>27/01/2026 14:29</li>
-                </ul>
-            </a>
+        <tbody>
+            <tr onclick="location.href='./Tickets.php'" style="cursor:pointer;">
+                <td>Ticket 1</td>
+                <td>Client 1</td>
+                <td>2x 🚹</td>
+                <td class="Statut">⏳</td>
+                <td class="Money">🪙</td>
+                <td>28/01/2026 12:06</td>
+            </tr>
 
-        </div>
+            <tr onclick="location.href='./Tickets.php'" style="cursor:pointer;">
+                <td>Ticket 2</td>
+                <td>Client 2</td>
+                <td>0x 🚹</td>
+                <td class="Statut">❌</td>
+                <td class="Money">—</td>
+                <td>27/01/2026 14:29</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
     </section>
-    
+    <script src="../JS/Ticket-Page.js"></script>
     <script src="../JS/Header.js"></script>
 </body>
 </html>
