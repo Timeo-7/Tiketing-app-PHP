@@ -9,23 +9,23 @@
 <body>
     <header>
         <div class="logo">
-            <a href="./Dashboard.html">
+            <a href="./Dashboard.php">
                 <img src="../assets/img/Logo.png" alt="Logo de moi hyper bg">
             </a>
         </div>
         <h2>Profile</h2>
         <nav>
-            <a href="./Dashboard.html">Dashboard</a>
-            <a href="./Projects-List.html">Projects</a>
-            <a href="./Tickets-List.html">Tickets</a>
-            <a href="./Clients-List.html">Clients</a>
+            <a href="./Dashboard.php">Dashboard</a>
+            <a href="./Projects-List.php">Projects</a>
+            <a href="./Tickets-List.php">Tickets</a>
+            <a href="./Clients-List.php">Clients</a>
             
             <div class="Profile-drop">
                 <button class="Drop-button">☰</button>
                 <div class="Drop-content">
-                    <a href="../pages/Profil.html">Profile</a>
-                    <a href="../pages/Settings.html">Settings</a>
-                    <a href="../index.html">Logout</a>
+                    <a href="../pages/Profil.php">Profile</a>
+                    <a href="../pages/Settings.php">Settings</a>
+                    <a href="../index.php">Logout</a>
                 </div>   
             </div>
         </nav>
@@ -52,13 +52,13 @@
                     <div>
                         <div class="access-list">
                             <div class="cadre">   
-                                <a href="./Projects-List.html">Projects</a>
+                                <a href="./Projects-List.php">Projects</a>
 
-                                <a class="projects-fast-access" href="./Project.html" >
+                                <a class="projects-fast-access" href="./Project.php" >
                                     <p>Project 1</p>
                                     <p>25x🧾</p>
                                 </a>
-                                <a class="projects-fast-access" href="./Project.html" >
+                                <a class="projects-fast-access" href="./Project.php" >
                                     <p>Project 2</p>
                                     <p>36x🧾</p>
                                 </a>
@@ -66,9 +66,9 @@
                             </div>
                             
                             <div class="cadre">   
-                                <a href="./Tickets-List.html">Tickets</a>
+                                <a href="./Tickets-List.php">Tickets</a>
 
-                                <a class="tickets-fast-access" href="./Tickets.html" >
+                                <a class="tickets-fast-access" href="./Tickets.php" >
                                     <p>Tickets 1</p>
                                     <p>client 1</p>
                                     
@@ -80,7 +80,7 @@
                                     </ul>
                                 </a>
 
-                                <a class="tickets-fast-access" href="./Tickets.html" >
+                                <a class="tickets-fast-access" href="./Tickets.php" >
                                     <p>Tickets 2</p>
                                     <p>client 2</p>
                                     

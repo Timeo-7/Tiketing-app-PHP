@@ -9,7 +9,7 @@
 <body>
    <header>
         <div class="logo">
-            <a href="../pages/Dashboard.html">
+            <a href="../pages/Dashboard.php">
                 <img src="../assets/img/Logo.png" alt="Logo de moi hyper bg">
             </a>
         </div>
@@ -18,7 +18,7 @@
         </nav>
     </header>
 
-     <form id="submitform_connexion" action="../index.html" method="GET" novalidate>
+     <form id="submitform_connexion" action="../index.php" method="GET" novalidate>
             <h2>Inscription</h2>
             <label for="type_inscription">Type:</label>
                 <select type="text" id="type_inscription" name="type_inscription">
@@ -39,7 +39,7 @@
             <div id="passwordVerif_error" class="error-text titanic">Le mot de passe ne correspond pas.</div>
             <br>
             <button type="submit" class="Submit-button">Creer</button>
-            <a href="../index.html">Se connecter</a>
+            <a href="../index.php">Se connecter</a>
         </form>
 
         <script src="../JS/Inscription.js"></script>

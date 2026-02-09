@@ -8,23 +8,23 @@
 <body>
     <header>
         <div class="logo">
-            <a href="./Dashboard.html">
+            <a href="./Dashboard.php">
                 <img src="../assets/img/Logo.png" alt="Logo de moi hyper bg">
             </a>
         </div>
         <h2>Welcome Maxence Gautier-Grall</h2>
         <nav>
-            <a href="./Dashboard.html">Dashboard</a>
-            <a href="./Projects-List.html">Projects</a>
-            <a href="./Tickets-List.html">Tickets</a>
-            <a href="./Clients-List.html">Clients</a>
+            <a href="./Dashboard.php">Dashboard</a>
+            <a href="./Projects-List.php">Projects</a>
+            <a href="./Tickets-List.php">Tickets</a>
+            <a href="./Clients-List.php">Clients</a>
             
             <div class="Profile-drop">
                 <button class="Drop-button">☰</button>
                 <div class="Drop-content">
-                     <a href="../pages/Profil.html">Profile</a>
-                    <a href="../pages/Settings.html">Settings</a>
-                    <a href="../index.html">Logout</a>
+                     <a href="../pages/Profil.php">Profile</a>
+                    <a href="../pages/Settings.php">Settings</a>
+                    <a href="../index.php">Logout</a>
                 </div>   
                 
             </div>

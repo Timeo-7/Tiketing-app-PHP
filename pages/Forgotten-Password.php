@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="logo">
-            <a href="../pages/Dashboard.html">
+            <a href="../pages/Dashboard.php">
                 <img src="../assets/img/Logo.png" alt="Logo de moi hyper bg">
             </a>
         </div>
@@ -19,14 +19,14 @@
     </header>
 
     <section class="connexion-form">
-        <form id="submitform_connexion" action="pages/Dashboard.html" method="GET" novalidate>
+        <form id="submitform_connexion" action="pages/Dashboard.php" method="GET" novalidate>
             <h2>Forgotten Password</h2>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email">
             <div id="email_error" class="error-text titanic">L'Email est invalide</div>
             <br>
             <button type="submit" class="Submit-button">Envoyer</button>
-            <a href="../index.html">Se connecter</a>
+            <a href="../index.php">Se connecter</a>
         </form>
 
     </section>

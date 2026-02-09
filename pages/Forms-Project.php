@@ -7,65 +7,61 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
-        <header>
+    <header>
         <div class="logo">
-            <a href="./Dashboard.html">
+            <a href="./Dashboard.php">
                 <img src="../assets/img/Logo.png" alt="Logo de moi hyper bg">
             </a>
         </div>
         <h2>Welcome Maxence Gautier-Grall</h2>
         <nav>
-            <a href="./Dashboard.html">Dashboard</a>
-            <a href="./Projects-List.html">Projects</a>
-            <a href="./Tickets-List.html">Tickets</a>
-            <a href="./Clients-List.html">Clients</a>
+            <a href="./Dashboard.php">Dashboard</a>
+            <a href="./Projects-List.php">Projects</a>
+            <a href="./Tickets-List.php">Tickets</a>
+            <a href="./Clients-List.php">Clients</a>
             
             <div class="Profile-drop">
                 <button class="Drop-button">☰</button>
                 <div class="Drop-content">
-                    <a href="../pages/Profil.html">Profile</a>
-                    <a href="../pages/Settings.html">Settings</a>
-                    <a href="../index.html">Logout</a>
+                    <a href="../pages/Profil.php">Profile</a>
+                    <a href="../pages/Settings.php">Settings</a>
+                    <a href="../index.php">Logout</a>
                 </div>   
                 
             </div>
         </nav>
     </header>
 
-    <section>
+         <section>
 
          <div class="Ticket-Header">   
             <div>
-                <a class="back-button" href="./Tickets-List.html">← Back to Tickets List</a>
+                <a class="back-button" href="./Projects-List.php">← Back to Projects List</a>
             </div>
             
         </div>
 
         <div>
-            <form id="submitform_ticket" action="" method="POST">
-                <label for="ticket-title">Ticket Title:</label>
-                <input type="text" id="ticket-title" name="ticket-title">
+            <form id="submitform_project" action="./Tickets-List.php" method="GET">
+                <label for="project-title">Project Title:</label>
+                <input type="text" id="project-title" name="project-title">
                 <div id="title_error" class="error-text titanic">Le titre est obligatoire.</div>
                 <br>
-                <label for="ticket-client">Client Name:</label>
-                <input type="text" id="ticket-client" name="ticket-client">
+                <label for="project-client">Client Name:</label>
+                <input type="text" id="project-client" name="project-client">
                 <div id="client_error" class="error-text titanic">Le client est obligatoire.</div>
                 <br>
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea>
                 <br>
-                <label for="projet">Project:</label>
-                <select type="text" id="projet" name="projet">
-                    <option value="project1">No Project</option>
-                    <option value="project1">Project 1</option>
-                    <option value="project2">Project 2</option>
-                </select>
                 <label for="colaborators">Colaborators:</label>
                 <input type="text" id="colaborators" name="colaborators"></input>
 
-                <label for="accept"> Facturable : <input type="checkbox" id="accept" name="accept"> </label>
+                <label for="project-file">Contract : <input type="file" id="project-file" name="mon_fichier"  accept=".pdf,.doc,.docx"></label>
+                <div id="file_error" class="error-text titanic">Le contrat est obligatoire.</div>
+                
                     
-                <button type="submit" class="Submit-button">Create Ticket</button>
+                <button type="submit" class="Submit-button">Create Project</button>
                 
             </form>
         </div>
@@ -73,9 +69,7 @@
 
     </section>
 
-    <script src="../JS/Ticket-Forms.js"></script>
+    <script src="../JS/Project-Forms.js"></script>
     <script src="../JS/Header.js"></script>
 </body>
-
-
 </html>
