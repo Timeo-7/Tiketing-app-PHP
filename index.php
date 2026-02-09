@@ -9,20 +9,20 @@
 <body>
     <header>
         <div class="logo">
-            <a href="./pages/Dashboard.html">
+            <a href="./pages/Dashboard.php">
                 <img src="./assets/img/Logo.png" alt="Logo de moi hyper bg">
             </a>
         </div>
         <nav>
 
             <a href="#">Contact</a>
-            <a href="./pages/Inscription.html">Creer un compte</a>
+            <a href="./pages/Inscription.php">Creer un compte</a>
 
         </nav>
     </header>
 
     <section class="connexion-form">
-        <form id="submitform_connexion" action="pages/Dashboard.html" method="GET" novalidate>
+        <form id="submitform_connexion" action="pages/Dashboard.php" method="GET" novalidate>
             <h2>Connexion</h2>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email">
@@ -33,7 +33,7 @@
             <div id="password_error" class="error-text titanic">Le Mot de passe doit faire plus de 8 caractères et contenir au moins un chiffre et une lettre.</div>
             <br>
             <button type="submit" class="Submit-button">Login</button>
-            <a href="./pages/Forgotten-Password.html">Forgotten password</a> 
+            <a href="./pages/Forgotten-Password.php">Forgotten password</a> 
         </form>
 
     </section>
