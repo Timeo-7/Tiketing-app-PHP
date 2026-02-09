@@ -1,3 +1,44 @@
+<?php
+
+$ticket = [
+         
+        [
+            "title" => "Ticket 1",
+            "client" => "Client 1",
+            "users" => "2x 🚹",
+            "statut" => "⏳",
+            "facturable" => "🪙",
+            "date" => "28/01/2026 12:06",
+        ],
+        [
+        "title" => "Ticket 2",
+        "client" => "Client 2",
+        "users" => "0x 🚹",
+        "statut" => "❌",
+        "facturable" => "—",
+        "date" => "27/01/2026 14:29",
+        ],
+    ];
+
+    // dd = debug & die
+    function dd($a) {
+        echo("<pre>");
+        echo("<code>");
+        var_dump($a);
+        die();
+        echo("</code>");
+        echo("</pre>");
+    }
+    
+
+    
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,42 +92,37 @@
                     <button class="filter-btn-Money" type="button">Facturable</button>
                 </div>
 
-    <table class="Table-ticket" id="content">
-        <thead>
-            <tr>
-                <th>Ticket</th>
-                <th>Client</th>
-                <th>Utilisateurs</th>
-                <th>Statut</th>
-                <th>Paiement</th>
-                <th>Date</th>
-            </tr>
-        </thead>
+    <div class="table-responsive">
+        <table class="Table-ticket" id="content">
+            <thead>
+                <tr>
+                    <th>Ticket</th>
+                    <th>Client</th>
+                    <th>Utilisateurs</th>
+                    <th>Statut</th>
+                    <th>Facturable</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
 
-        <tbody>
-            <tr onclick="location.href='./Tickets.php'" style="cursor:pointer;">
-                <td>Ticket 1</td>
-                <td>Client 1</td>
-                <td>2x 🚹</td>
-                <td class="Statut">⏳</td>
-                <td class="Money">🪙</td>
-                <td>28/01/2026 12:06</td>
-            </tr>
-
-            <tr onclick="location.href='./Tickets.php'" style="cursor:pointer;">
-                <td>Ticket 2</td>
-                <td>Client 2</td>
-                <td>0x 🚹</td>
-                <td class="Statut">❌</td>
-                <td class="Money">—</td>
-                <td>27/01/2026 14:29</td>
-            </tr>
-        </tbody>
-    </table>
+            <tbody>
+                <?php foreach ($ticket as $t): ?>
+                    <tr onclick="location.href='./Tickets.php'" style="cursor:pointer;">
+                        <td><?= $t["title"] ?></td>
+                        <td><?= $t["client"] ?></td>
+                        <td><?= $t["users"] ?></td>
+                        <td class="Statut"><?= $t["statut"] ?></td>
+                        <td class="Money"><?= $t["facturable"] ?></td>
+                        <td><?= $t["date"] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
     </section>
-    <script src="../JS/Ticket-Page.js"></script>
+    <!-- <script src="../JS/Ticket-Page.js"></script> -->
     <script src="../JS/Header.js"></script>
 </body>
 </html>

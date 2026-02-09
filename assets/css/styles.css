@@ -604,6 +604,89 @@ h2 {
     width: 100%;
 }
 
+/* =================== Settings =================== */
+
+.SettingsPage{
+    display: flex;
+    justify-content: center;
+}
+
+.ClassicSettings, .DashBoardSettings{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+
+
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-secondary);
+    border-bottom: 2px solid var(--border-light);
+    padding: 8px 32px;
+    box-shadow: var(--shadow-sm);
+
+    margin: 20px;
+}
+
+.Theme, .LangueSettings{
+     display: flex;
+    gap: 50px;
+    font-weight: 500;
+    padding: 8px 16px;
+    
+}
+
+.ThemeSwitch, .FastAccessSwitch{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.ThemeSwitch input, .FastAccessSwitch input {
+    display: none;
+}
+
+/* Le fond du switch */
+.ThemeSwitch .slider, .FastAccessSwitch .slider {
+    position: relative;
+    width: 48px;
+    height: 26px;
+    background-color: var(--border-medium);
+    border-radius: 50px;
+    transition: var(--transition);
+}
+
+/* Le rond */
+.ThemeSwitch .slider::before, .FastAccessSwitch .slider::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    top: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Activé */
+.ThemeSwitch input:checked + .slider, .FastAccessSwitch input:checked + .slider {
+    background-color: var(--accent-primary);
+}
+
+.ThemeSwitch input:checked + .slider::before, .FastAccessSwitch input:checked + .slider::before {
+    transform: translateX(22px);
+}
+
+.switch-label {
+    font-weight: 500;
+}
+
+
 
 /* ==================== Forms ==================== */
 
@@ -732,53 +815,184 @@ button:disabled {
 }
 
 /* ==================== Responsive ==================== */
-@media (max-width: 768px) {
+
+/* ----------- Tablettes (≤ 1024px) ----------- */
+@media (max-width: 1024px) {
+
     header {
-        flex-direction: column;
-        gap: 16px;
-        padding: 16px;
+        padding: 8px 16px;
     }
-    
+
     nav {
-        flex-direction: column;
-        gap: 8px;
-        width: 100%;
+        gap: 16px;
     }
-    
-    .stats-list-clients {
-    flex-direction: column;
-    }   
+
+    .stats-list-clients,
+    .stats-list-tickets {
+        flex-direction: column;
+    }
+
+    .stats-list-tickets1,
+    .stats-list-tickets2 {
+        min-width: 100%;
+    }
 
     .access-list {
         flex-direction: column;
     }
 
-    .stats-list-tickets{
-        flex-direction: column;
+    .projects-fast-access,
+    .tickets-fast-access,
+    .clients-fast-access {
+        min-width: 100%;
     }
-    
-    .stats-list-tickets1,
-    .stats-list-tickets2 {
-        flex-direction: column;
+
+    .Tickets-List,
+    .Projects-List {
+        padding: 24px;
+        margin: 16px;
     }
-    
+
     .Ticket-Header {
         flex-direction: column;
-        gap: 16px;
         align-items: flex-start;
+        gap: 16px;
     }
-    
+
+    .Right-buttons {
+        flex-wrap: wrap;
+    }
+
+    .Profile {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Profil-Picture {
+        margin: 20px;
+        height: auto;
+        width: 90%;
+    }
+}
+
+/* ----------- Mobiles (≤ 768px) ----------- */
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    .Dashboard-Stats,
+    .fast-Access {
+        margin: 16px;
+    }
+
+    .filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-btn-En-Cours,
+    .filter-btn-Non-Traite,
+    .filter-btn-Money {
+        width: 100%;
+        text-align: center;
+    }
+
+    .cadre {
+        font-size: 18px;
+        padding: 24px;
+    }
+
+    .Table-ticket th,
+    .Table-ticket td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .Ticket-cadre p {
+        margin-left: 0;
+    }
+
+    form {
+        padding: 24px;
+        margin: 16px;
+    }
+
+    #Profil-image {
+        height: 180px;
+        width: 180px;
+        margin: 20px;
+    }
+
+    .ValidForms {
+        width: 90%;
+        right: 5%;
+        height: auto;
+        padding: 20px;
+        font-size: 20px;
+        border-radius: 40px;
+        text-align: center;
+    }
+
+    .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    }
+
+    .Table-ticket {
+        min-width: 700px;
+    }
+}
+
+/* ----------- Très petits écrans (≤ 480px) ----------- */
+@media (max-width: 480px) {
+
+    nav a {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .Submit-button,
+    .new-ticket-button,
+    .Edit-button,
+    .Supression-button,
+    .back-button {
+        width: 100%;
+        text-align: center;
+    }
+
     .Right-buttons {
         width: 100%;
         flex-direction: column;
     }
-    
-    .back-button,
-    .Edit-button,
-    .Supression-button {
-        width: 100%;
+
+    .Ticket-Header {
+        margin: 16px;
     }
-    .Profile{
-        flex-direction: column;
+
+    form label {
+        font-size: 14px;
+    }
+
+    .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    }
+
+    .Table-ticket {
+        min-width: 700px;
     }
 }
