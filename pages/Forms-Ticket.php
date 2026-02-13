@@ -16,9 +16,9 @@ try {
 
 
 // 3 : on récupère les films pour les afficher dans le tableau
-    $sql = "SELECT * FROM ticket";
+    $sql = "SELECT * FROM project";
     $stmt = $pdo->query($sql);
-    $tickets = $stmt->fetchAll();
+    $projects = $stmt->fetchAll();
 
 
 ?>
@@ -81,10 +81,11 @@ try {
                 <textarea id="description" name="description"></textarea>
                 <br>
                 <label for="project">Project:</label>
-                <select id="project" name="project" required>
-                    <option value="No Project">No Project</option>
-                    <option value="project1">Project 1</option>
-                    <option value="project2">Project 2</option>
+                <select id="project" name="project">
+                    <option value="No project">No project</option>
+                    <?php foreach ($projects as $project): ?>
+                        <option value="<?= $project["title"] ?>"><?= $project["title"] ?></option>
+                    <?php endforeach?>
                 </select>
                 <label for="colaborators">Colaborators:</label>
                 <input type="text" id="colaborators" name="colaborators"></input>

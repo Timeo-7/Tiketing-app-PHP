@@ -20,6 +20,7 @@ try {
     $stmt = $pdo->query($sql);
     $tickets = $stmt->fetchAll();
 
+    
 ?>
 
 

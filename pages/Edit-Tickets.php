@@ -27,6 +27,11 @@ if (isset($_GET["edit"])) {
 
 $ticket = $stmt->fetch();
 
+// 3 : on récupère les films pour les afficher dans le tableau
+    $sql = "SELECT * FROM project";
+    $stmt = $pdo->query($sql);
+    $projects = $stmt->fetchAll();
+
 
 ?>
 
@@ -89,15 +94,10 @@ $ticket = $stmt->fetch();
                 <br>
                 <label for="project">Project:</label>
                 <select id="project" name="project" required>
-                    <option value="No Project" <?= ($ticket["project"] === "No Project") ? "selected" : "" ?>>
-                         No Project
-                    </option>
-                    <option value="project 1" <?= ($ticket["project"] === "project 1") ? "selected" : "" ?>>
-                         project 1
-                    </option>
-                    <option value="project 2" <?= ($ticket["project"] === "project 2") ? "selected" : "" ?>>
-                         project 2
-                    </option>
+                    <option value="No project">No project</option>
+                    <?php foreach ($projects as $project): ?>
+                        <option value="<?= $project["title"] ?>" <?= ($ticket["project"] === $project["title"]) ? "selected" : "" ?> ><?= $project["title"] ?></option>
+                    <?php endforeach?>
                 </select>
                 <label for="colaborators">Colaborators:</label>
                 <input type="text" id="colaborators" name="colaborators" value="<?= $ticket["collaborators"] ?>"></input>
