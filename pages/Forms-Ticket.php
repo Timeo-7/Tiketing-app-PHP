@@ -1,14 +1,51 @@
 <?php
 
+//Connexion BDD
+$dsn = "mysql:host=localhost:3306;dbname=tickets_db;charset=utf8mb4";
+$user = "root";
+$password = "root";
+
+try {
+    $pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+} catch (PDOException $e) {
+    die("Erreur connexion : " . $e->getMessage());
+}
 
 
-    $fs = new FormService($_POST);
 
-    /* Ajouter le forms à la liste */
 
-    // Ici je peux traiter mes données issues du formulaire en PHP.
+$errors = [];
+$success = false;
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $title  = trim($_POST['ticket-title'] ?? '');
+    $client = trim($_POST['ticket-client'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $project = $_POST['projet'] ?? '';
+    $collaborators = trim($_POST['colaborators'] ?? '');
+    $accept = isset($_POST['accept']) ? 1 : 0;
+
+    // Validation
+    if (empty($title)) {
+        $errors['title'] = "Le titre est obligatoire.";
+    }
+
+    if (empty($client)) {
+        $errors['client'] = "Le client est obligatoire.";
+    }
+
+    if (empty($errors)) {
+        $success = true;
+    }
+}
     
+    if ($success) {
+            echo "Formulaire envoyé";
+        }     
 
 
 ?>
@@ -55,18 +92,19 @@
             <div>
                 <a class="back-button" href="./Tickets-List.php">← Back to Tickets List</a>
             </div>
-            
         </div>
 
         <div>
-            <form id="submitform_ticket" action="" method="POST">
+            <form id="submitform_ticket" action="../Php/Create_Ticket.php" method="POST">
                 <label for="ticket-title">Ticket Title:</label>
                 <input type="text" id="ticket-title" name="ticket-title">
                 <div id="title_error" class="error-text titanic">Le titre est obligatoire.</div>
                 <br>
                 <label for="ticket-client">Client Name:</label>
                 <input type="text" id="ticket-client" name="ticket-client">
-                <div id="client_error" class="error-text titanic">Le client est obligatoire.</div>
+                <?php if (!empty($errors['ticket-client'])): ?>
+                    <div id="client_error" class="error-text titanic">Le client est obligatoire.</div>
+                <?php endif ?>
                 <br>
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea>
@@ -80,7 +118,10 @@
                 <label for="colaborators">Colaborators:</label>
                 <input type="text" id="colaborators" name="colaborators"></input>
 
-                <label for="accept"> Facturable : <input type="checkbox" id="accept" name="accept"> </label>
+                <label for="date">Colaborators:</label>
+                <input type="date" id="date" name="date"></input>
+
+                <label for="facturable"> Facturable : <input type="checkbox" id="facturable" name="facturable"> </label>
                     
                 <button type="submit" class="Submit-button">Create Ticket</button>
                 
@@ -88,12 +129,16 @@
         </div>
 
         <div class="ValidForms titanic">
-            <p>Formulaire envoyé</p>
+            <?php if ($success):?>
+                <div class="ValidForms">
+                    <p>Formulaire envoyé</p>
+                </div>
+            <?php endif; ?>
         </div>
 
     </section>
 
-    <script src="../JS/Ticket-Forms.js"></script>
+    <!-- <script src="../JS/Ticket-Forms.js"></script> -->
     <script src="../JS/Header.js"></script>
 </body>
 

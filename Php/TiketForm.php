@@ -6,7 +6,7 @@ class TicketForm {
     public $title;
     public $client;
     public $users;
-    public $staut;
+    public $statut;
     public $facturable;
     public $date;
 
