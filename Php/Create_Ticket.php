@@ -28,11 +28,14 @@ try {
 $errors = [];
 $success = false;
 
+
 // Traitement du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
     
     $ticketForm = new TicketForm($_POST);
+
+    dd($ticketForm["idProject"]);
     
     if ($ticketForm->save($pdo)) {
         header("location:../pages/Tickets-List.php");

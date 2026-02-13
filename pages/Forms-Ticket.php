@@ -80,13 +80,16 @@ try {
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea>
                 <br>
-                <label for="project">Project:</label>
-                <select id="project" name="project">
+                <label for="idProject">Project:</label>
+                <select id="idProject" name="idProject">
                     <option value="No project">No project</option>
                     <?php foreach ($projects as $project): ?>
-                        <option value="<?= $project["title"] ?>"><?= $project["title"] ?></option>
+                        <option value="<?= $project["id"] ?>"><?= $project["title"] ?></option>
                     <?php endforeach?>
                 </select>
+
+               
+
                 <label for="colaborators">Colaborators:</label>
                 <input type="text" id="colaborators" name="colaborators"></input>
 

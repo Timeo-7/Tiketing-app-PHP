@@ -11,6 +11,7 @@ class TicketForm {
     public $statut;
     public $facturable;
     public $date;
+    public $idProject;
     public $errors = [];
 
     // Constructeur pour initialiser les propriétés depuis $_POST
@@ -23,6 +24,7 @@ class TicketForm {
         $this->collaborators = trim($data["colaborators"] ?? "");
         $this->date = $data["date"] ?? "";
         $this->facturable = isset($data["facturable"]) ? 1 : 0;
+        $this->idProject = $data["idProject"] ?? null;
     }
 
     // Validation des données
@@ -49,25 +51,32 @@ class TicketForm {
         if (!$this->validate()) {
             return false;
         }
+
+        try {
+            $sql = "INSERT INTO ticket (title, client, project, `description`, collaborators, users, statut, `date`, facturable, idProject) 
+                VALUES (:title, :client, :project, :description, :collaborators, :users, :statut, :date, :facturable, :idProject)";
             
-        $sql = "INSERT INTO ticket (title, client, project, `description`, collaborators, users, statut, `date`, facturable) 
-            VALUES (:title, :client, :project, :description, :collaborators, :users, :statut, :date, :facturable)";
-        
-        $stmt = $pdo->prepare($sql);
-        
-        $stmt->execute([
-            ":title"          => $this->title,
-            ":client"         => $this->client,
-            ":project"        => $this->project,
-            ":description"    => $this->description,
-            ":collaborators"  => $this->collaborators,
-            ":users"          => 0,
-            ":statut"         => 0,
-            ":date"           => $this->date,
-            ":facturable"     => $this->facturable
-        ]);
-        
-        return true;
+            $stmt = $pdo->prepare($sql);
+            
+            $stmt->execute([
+                ":title"          => $this->title,
+                ":client"         => $this->client,
+                ":project"        => $this->project,
+                ":description"    => $this->description,
+                ":collaborators"  => $this->collaborators,
+                ":users"          => 0,
+                ":statut"         => 0,
+                ":date"           => $this->date,
+                ":facturable"     => $this->facturable,
+                ":idProject"      => $this->idProject
+            ]);
+            
+            return true;
+            
+        } catch (PDOException $e) {
+            $this->errors["database"] = "Erreur lors de l'enregistrement : " . $e->getMessage();
+            return false;
+        }
     }
 
     // Mettre à jour un ticket existant
@@ -77,34 +86,47 @@ class TicketForm {
             return false;
         }
 
-        $sql = "UPDATE ticket 
-            SET title = :title, 
-                client = :client, 
-                project = :project, 
-                `description` = :description, 
-                collaborators = :collaborators, 
-                users = :users, 
-                statut = :statut, 
-                `date` = :date, 
-                facturable = :facturable
-            WHERE id = :id";
-        
-        $stmt = $pdo->prepare($sql);
-        
-        $stmt->execute([
-            ":title"          => $this->title,
-            ":client"         => $this->client,
-            ":project"        => $this->project,
-            ":description"    => $this->description,
-            ":collaborators"  => $this->collaborators,
-            ":users"          => 0,
-            ":statut"         => 0,
-            ":date"           => $this->date,
-            ":facturable"     => $this->facturable,
-            ":id"             => $id
-        ]);
+        try {
+            $sql = "UPDATE ticket 
+                SET title = :title, 
+                    client = :client, 
+                    project = :project, 
+                    `description` = :description, 
+                    collaborators = :collaborators, 
+                    users = :users, 
+                    statut = :statut, 
+                    `date` = :date, 
+                    facturable = :facturable,
+                    idProject = :idProject
+                WHERE id = :id";
+            
+            $stmt = $pdo->prepare($sql);
+            
+            $stmt->execute([
+                ":title"          => $this->title,
+                ":client"         => $this->client,
+                ":project"        => $this->project,
+                ":description"    => $this->description,
+                ":collaborators"  => $this->collaborators,
+                ":users"          => $this->users,
+                ":statut"         => $this->statut,
+                ":date"           => $this->date,
+                ":facturable"     => $this->facturable,
+                ":idProject"      => $this->idProject,
+                ":id"             => $id
+            ]);
 
-        return true;
+            if ($stmt->rowCount() === 0) {
+                $this->errors["database"] = "Aucun ticket trouvé avec cet ID ou aucune modification effectuée.";
+                return false;
+            }
+
+            return true;
+            
+        } catch (PDOException $e) {
+            $this->errors["database"] = "Erreur lors de la mise à jour : " . $e->getMessage();
+            return false;
+        }
     }
 
     // Récupérer les erreurs
