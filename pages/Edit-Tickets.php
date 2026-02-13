@@ -14,11 +14,18 @@ try {
     die("Erreur connexion : " . $e->getMessage());
 }
 
+// Requete du film en question
+if (isset($_GET["edit"])) {
+    $sql = "SELECT * FROM ticket WHERE id=:id";
+    $stmt = $pdo->prepare($sql);
 
-// 3 : on récupère les films pour les afficher dans le tableau
-    $sql = "SELECT * FROM ticket";
-    $stmt = $pdo->query($sql);
-    $tickets = $stmt->fetchAll();
+    $stmt->execute([
+        ":id" => $_GET["edit"],
+    ]);
+}
+
+
+$ticket = $stmt->fetch();
 
 
 ?>
@@ -63,38 +70,44 @@ try {
 
          <div class="Ticket-Header">   
             <div>
-                <a class="back-button" href="./Tickets-List.php">← Back to Tickets List</a>
+                <a class="back-button" href="./Tickets.php?id=<?=$ticket["id"]?>">← Back to Tickets List</a>
             </div>
         </div>
 
         <div>
-            <form id="submitform_ticket" action="../Php/Create_Ticket.php" method="POST">
+            <form id="submitform_ticket" action="../Php/Update-Ticket.php?edit=<?= $ticket["id"]?>" method="POST">
                 <label for="ticket-title">Ticket Title:</label>
-                <input type="text" id="ticket-title" name="ticket-title">
+                <input type="text" id="ticket-title" name="ticket-title" value="<?= $ticket["title"] ?>">
                 <div id="title_error" class="error-text titanic">Le titre est obligatoire.</div>
                 <br>
                 <label for="ticket-client">Client Name:</label>
-                <input type="text" id="ticket-client" name="ticket-client">
+                <input type="text" id="ticket-client" name="ticket-client" value="<?= $ticket["client"] ?>">
                 <div id="client_error" class="error-text titanic">Le client est obligatoire.</div>
                 <br>
                 <label for="description">Description:</label>
-                <textarea id="description" name="description"></textarea>
+                <textarea id="description" name="description" value="<?= $ticket["description"] ?>"></textarea>
                 <br>
                 <label for="project">Project:</label>
                 <select id="project" name="project" required>
-                    <option value="No Project">No Project</option>
-                    <option value="project1">Project 1</option>
-                    <option value="project2">Project 2</option>
+                    <option value="No Project" <?= ($ticket["project"] === "No Project") ? "selected" : "" ?>>
+                         No Project
+                    </option>
+                    <option value="project 1" <?= ($ticket["project"] === "project 1") ? "selected" : "" ?>>
+                         project 1
+                    </option>
+                    <option value="project 2" <?= ($ticket["project"] === "project 2") ? "selected" : "" ?>>
+                         project 2
+                    </option>
                 </select>
                 <label for="colaborators">Colaborators:</label>
-                <input type="text" id="colaborators" name="colaborators"></input>
+                <input type="text" id="colaborators" name="colaborators" value="<?= $ticket["collaborators"] ?>"></input>
 
-                <label for="date">Colaborators:</label>
-                <input type="date" id="date" name="date"></input>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" value="<?= $ticket["date"] ?>"></input>
 
-                <label for="facturable"> Facturable : <input type="checkbox" id="facturable" name="facturable"> </label>
+                <label for="facturable"> Facturable : <input type="checkbox" id="facturable" name="facturable" value="1" <?= $ticket["facturable"] ? 'checked' : '' ?>> </label>
                     
-                <button type="submit" class="Submit-button">Create Ticket</button>
+                <button type="submit" class="Submit-button">Update Ticket</button>
                 
             </form>
         </div>

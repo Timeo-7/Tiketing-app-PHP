@@ -1,6 +1,6 @@
 <?php
-// Inclusion de la classe TicketForm
-require_once 'TicketForm.php';
+
+require_once "./TicketForm.php";
 
 function dd($a) {
     echo("<pre>");
@@ -25,6 +25,19 @@ try {
     die("Erreur connexion : " . $e->getMessage());
 }
 
+//Recupere ID
+if (isset($_GET["edit"])) {
+
+    $sql = "SELECT * FROM ticket WHERE id=:id";
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([
+        ":id" => $_GET["edit"]
+    ]);
+}
+
+$ticket = $stmt->fetch();
+
 $errors = [];
 $success = false;
 
@@ -34,8 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $ticketForm = new TicketForm($_POST);
     
-    if ($ticketForm->save($pdo)) {
-        header("location:../pages/Tickets-List.php");
+   
+
+    if ($ticketForm->update($pdo, $ticket["id"])) {
+        header("location:../pages/Tickets.php?id=".$ticket['id']);
     } else {
         $errors = $ticketForm->getErrors();
     }

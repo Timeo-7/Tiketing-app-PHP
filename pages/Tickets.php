@@ -70,10 +70,10 @@ $ticket = $stmt->fetch();
 
             <div class="Right-buttons">
                 <div class="Edit-button">
-                    <button onclick="window.location.href='./Update-Tickets.php'">✏️ Edit Ticket</button>
+                    <button onclick="window.location.href='./Edit-Tickets.php?edit=<?= $ticket["id"] ?>'">✏️ Edit Ticket</button>
                 </div>
                 <div class="Supression-button">
-                    <button onclick="location.href='../Php/Delete_Ticket.php?id=<?= $ticket["id"] ?>'">Supprimer le ticket</button>
+                    <button onclick="location.href='../Php/Delete_Ticket.php?delete=<?= $ticket["id"] ?>'">Supprimer le ticket</button>
                 </div>
             </div>
             
@@ -83,7 +83,8 @@ $ticket = $stmt->fetch();
         <div class="Ticket-cadre">   
             <h3>Client:</h3><p> <?= $ticket["client"]?></p>
             <h3>Project:</h3><p> <?= $ticket["project"]?></p>
-            <h3>Description:</h3> <p><?= $ticket["project"]?></p>
+            <h3>Collaborateurs:</h3><p> <?= $ticket["collaborators"]?></p>
+            <h3>Description:</h3> <p><?= $ticket["description"]?></p>
             <ul>
                 
             </ul>
@@ -93,19 +94,15 @@ $ticket = $stmt->fetch();
                 </tr>
                 <tr>
                     <td>Nombre de personnes concernées: </td>
-                    <td>2x🚹</td>
+                    <td><?= $ticket["users"]?>x🚹</td>
                 </tr>
                 <tr>
                     <td>Statut:</td> 
-                    <td>⏳ En cours</td>
-                </tr>
-                <tr>
-                    <td>Priorité: </td>
-                    <td>Haute</td>
+                    <td><?= $ticket["statut"] == 1 ? "⏳" : "❌" ?></td>
                 </tr>
                 <tr>
                     <td>Date de création:</td>
-                    <td>28/01/2026 12:06</td>
+                    <td><?= $ticket["date"]?></td>
                 </tr>
                 <tr>
                     <td>Date de dernière mise à jour: </td>
@@ -113,7 +110,7 @@ $ticket = $stmt->fetch();
                 </tr>
                 <tr>
                     <td>Facturable:</td>
-                    <td>🪙 Oui</td>
+                    <td><?= $ticket["facturable"] == 1 ? "🪙" : "_" ?></td>
                 </tr>
             </table>
 

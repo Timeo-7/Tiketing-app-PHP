@@ -23,10 +23,9 @@ try {
     die("Erreur connexion : " . $e->getMessage());
 }
 
-
 if (isset($_GET["delete"])) {
 
-    $sql = "DELETE FROM film WHERE id = :id";
+    $sql = "DELETE FROM ticket WHERE id = :id";
     $stmt = $pdo->prepare($sql);
 
     $stmt->execute([
