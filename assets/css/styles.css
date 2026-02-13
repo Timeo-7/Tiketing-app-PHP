@@ -807,12 +807,15 @@ form .Submit-button {
 
 /* ==================== Bouttons génériques ==================== */
 button {
-    font-family: inherit;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     cursor: pointer;
     transition: var(--transition);
+    color: var(--text-primary);
     background-color: transparent;
     border: none;
     text-decoration: none;
+    
+
 }
 
 button:disabled {

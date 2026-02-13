@@ -1,3 +1,31 @@
+<?php
+$dsn = "mysql:host=localhost:3306;dbname=tickets_db;charset=utf8mb4";
+$user = "root";
+$password = "root";
+
+try {
+    $pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+} catch (PDOException $e) {
+    die("Erreur connexion : " . $e->getMessage());
+}
+
+
+// Requete du film en question
+$sql = "SELECT * FROM project WHERE id=:id";
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([
+    ":id" => $_GET["id"],
+]);
+
+$project = $stmt->fetch();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,20 +71,19 @@
 
             <div class="Right-buttons">
                 <div >
-                    <button class="Edit-button">✏️ Edit Project</button>
+                    <button class="Edit-button"onclick="location.href='./Edit-Projects.php?edit=<?= $project["id"] ?>'">✏️ Edit Project</button>
                 </div>
                 <div >
-                    <button class="Supression-button">Supprimer le projet</button>
+                    <button class="Supression-button" onclick="location.href='../Php/Delete_Project.php?delete=<?= $project["id"] ?>'">Supprimer le projet</button>
                 </div>
             </div>
             
         </div>
 
         <div class="Ticket-cadre">   
-            <h3>Client:</h3><p> Client Name</p>
-            <h3>Colaborators:</h3><p>Colaborators Names</p>
-            <h3>Project Name:</h3><p>Project Name</p>
-            <h3>Description:</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h3>Project Name:</h3><p><?= $project["title"]?></p>
+            <h3>Client:</h3><p><?= $project["client"]?></p>
+            <h3>Description:</h3><p><?= $project["description"]?></p>
 
             <table class="Table-ticket">
                 <tr>
@@ -68,15 +95,15 @@
                 </tr>
                 <tr>
                     <td>Number of associated tickets: </td>
-                    <td>25x🧾</td>
+                    <td><?= $project["ticketNumber"]?>x🧾</td>
                 </tr>
                 <tr>
                     <td>Tickets en cours: </td>
-                    <td>10</td>
+                    <td><?= $project["workingTickets"]?>x⌛</td>
                 </tr>
                 <tr>
-                    <td>Tickets terminés:</td> 
-                    <td>15</td>
+                    <td>Tickets en attentes:</td> 
+                    <td><?= $project["waitingTickets"]?>x❌</td>
                 </tr>
             </table>
 

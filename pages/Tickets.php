@@ -69,11 +69,11 @@ $ticket = $stmt->fetch();
             </div>
 
             <div class="Right-buttons">
-                <div class="Edit-button">
-                    <button onclick="window.location.href='./Edit-Tickets.php?edit=<?= $ticket["id"] ?>'">✏️ Edit Ticket</button>
+                <div >
+                    <button class="Edit-button" onclick="window.location.href='./Edit-Tickets.php?edit=<?= $ticket["id"] ?>'">✏️ Edit Ticket</button>
                 </div>
-                <div class="Supression-button">
-                    <button onclick="location.href='../Php/Delete_Ticket.php?delete=<?= $ticket["id"] ?>'">Supprimer le ticket</button>
+                <div >
+                    <button class="Supression-button" onclick="location.href='../Php/Delete_Ticket.php?delete=<?= $ticket["id"] ?>'">Supprimer le ticket</button>
                 </div>
             </div>
             

@@ -14,11 +14,19 @@ try {
     die("Erreur connexion : " . $e->getMessage());
 }
 
+// Requete du film en question
+if (isset($_GET["edit"])) {
+    $sql = "SELECT * FROM project WHERE id=:id";
+    $stmt = $pdo->prepare($sql);
 
-// 3 : on récupère les films pour les afficher dans le tableau
-    $sql = "SELECT * FROM project";
-    $stmt = $pdo->query($sql);
-    $tickets = $stmt->fetchAll();
+    $stmt->execute([
+        ":id" => $_GET["edit"],
+    ]);
+}
+
+
+$project = $stmt->fetch();
+
 
 ?>
 
@@ -68,22 +76,22 @@ try {
         </div>
 
         <div>
-            <form id="submitform_project" action="../Php/Create_Project.php" method="POST">
+            <form id="submitform_project" action="../Php/Update-Project.php?edit=<?= $project["id"]?>" method="POST">
                 <label for="project-title">Project Title:</label>
-                <input type="text" id="project-title" name="project-title">
+                <input type="text" id="project-title" name="project-title" value="<?= $project["title"] ?>">
                 <div id="title_error" class="error-text titanic">Le titre est obligatoire.</div>
                 <br>
                 <label for="project-client">Client Name:</label>
-                <input type="text" id="project-client" name="project-client">
+                <input type="text" id="project-client" name="project-client" value="<?= $project["client"] ?>">
                 <div id="client_error" class="error-text titanic">Le client est obligatoire.</div>
                 <br>
                 <label for="project-description">Description:</label>
-                <textarea id="description" name="description"></textarea>
+                <textarea id="description" name="description" value="<?= $project["description"] ?>"></textarea>
                 <br>
                 <label for="project-file">Contract : <input type="file" id="project-file" name="contract"  accept=".pdf,.doc,.docx"></label>
                 <div id="file_error" class="error-text titanic">Le contrat est obligatoire.</div>
                     
-                <button type="submit" class="Submit-button">Create Project</button>
+                <button type="submit" class="Submit-button">Update Project</button>
                 
             </form>
         </div>

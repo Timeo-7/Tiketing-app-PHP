@@ -1,3 +1,41 @@
+<?php
+
+// dd = debug & die
+function dd($a) {
+    echo("<pre>");
+    echo("<code>");
+    var_dump($a);
+    die();
+    echo("</code>");
+    echo("</pre>");
+}
+
+//Connexion BDD
+
+$dsn = "mysql:host=localhost:3306;dbname=tickets_db;charset=utf8mb4";
+$user = "root";
+$password = "root";
+
+try {
+    $pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+} catch (PDOException $e) {
+    die("Erreur connexion : " . $e->getMessage());
+}
+
+
+// 3 : on récupère les films pour les afficher dans le tableau
+    $sql = "SELECT * FROM project";
+    $stmt = $pdo->query($sql);
+    $tickets = $stmt->fetchAll();
+    
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,16 +81,13 @@
         <div class="access-list">
                 <div class="cadre">   
                     <p>Projects</p>
-
-                    <a class="projects-fast-access" href="./Project.php" >
-                         <p>Project 1</p>
-                         <p>25x🧾</p>
-                    </a>
-                    <a class="projects-fast-access" href="./Project.php" >
-                         <p>Project 2</p>
-                         <p>36x🧾</p>
-                    </a>
-
+                    <?php foreach ($tickets as $project): ?>
+                        <a class="projects-fast-access" href="./Project.php?id=<?= $project["id"]?>">
+                            <p><?= $project["title"]?></p>
+                            <p><?= $project["client"]?></p>
+                            <p><?= $project["ticketNumber"]?>x🧾</p>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
     </section>
     

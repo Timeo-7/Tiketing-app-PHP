@@ -1,6 +1,9 @@
 <?php
 
-require_once "TicketForm.php";
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+// Inclusion de la classe TicketForm
+require_once './ProjectForm.php';
 
 function dd($a) {
     echo("<pre>");
@@ -16,6 +19,7 @@ $dsn = "mysql:host=localhost:3306;dbname=tickets_db;charset=utf8mb4";
 $user = "root";
 $password = "root";
 
+
 try {
     $pdo = new PDO($dsn, $user, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -25,34 +29,20 @@ try {
     die("Erreur connexion : " . $e->getMessage());
 }
 
-//Recupere ID
-if (isset($_GET["edit"])) {
-
-    $sql = "SELECT * FROM ticket WHERE id=:id";
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([
-        ":id" => $_GET["edit"]
-    ]);
-}
-
-$ticket = $stmt->fetch();
 
 $errors = [];
 $success = false;
-
 // Traitement du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
+    $projectForm = new ProjectForm($_POST);
     
-    $ticketForm = new TicketForm($_POST);
     
-   
-
-    if ($ticketForm->update($pdo, $ticket["id"])) {
-        header("location:../pages/Tickets.php?id=".$ticket['id']);
+    if ($projectForm->save($pdo)) {
+        header("location:../pages/Projects-List.php");
+        exit();
     } else {
-        $errors = $ticketForm->getErrors();
+        $errors = $projectForm->getErrors();
     }
 }
 

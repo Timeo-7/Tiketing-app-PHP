@@ -1,6 +1,5 @@
 <?php
-
-require_once "TicketForm.php";
+require_once "ProjectForm.php";
 
 function dd($a) {
     echo("<pre>");
@@ -9,12 +8,13 @@ function dd($a) {
     die();
     echo("</code>");
     echo("</pre>");
-}
-
+    }
+    
 //Connexion BDD
 $dsn = "mysql:host=localhost:3306;dbname=tickets_db;charset=utf8mb4";
 $user = "root";
 $password = "root";
+
 
 try {
     $pdo = new PDO($dsn, $user, $password, [
@@ -28,7 +28,7 @@ try {
 //Recupere ID
 if (isset($_GET["edit"])) {
 
-    $sql = "SELECT * FROM ticket WHERE id=:id";
+    $sql = "SELECT * FROM project WHERE id=:id";
     $stmt = $pdo->prepare($sql);
 
     $stmt->execute([
@@ -36,7 +36,7 @@ if (isset($_GET["edit"])) {
     ]);
 }
 
-$ticket = $stmt->fetch();
+$project = $stmt->fetch();
 
 $errors = [];
 $success = false;
@@ -45,14 +45,15 @@ $success = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     
-    $ticketForm = new TicketForm($_POST);
+    $ProjectForm = new ProjectForm($_POST);
     
-   
 
-    if ($ticketForm->update($pdo, $ticket["id"])) {
-        header("location:../pages/Tickets.php?id=".$ticket['id']);
+
+    if ($ProjectForm->update($pdo, $project["id"])) {
+
+        header("location:../pages/Project.php?id=".$project['id']);
     } else {
-        $errors = $ticketForm->getErrors();
+        $errors = $ProjectForm->getErrors();
     }
 }
 
