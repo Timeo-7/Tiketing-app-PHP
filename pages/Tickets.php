@@ -1,3 +1,31 @@
+<?php
+$dsn = "mysql:host=localhost:3306;dbname=tickets_db;charset=utf8mb4";
+$user = "root";
+$password = "root";
+
+try {
+    $pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+} catch (PDOException $e) {
+    die("Erreur connexion : " . $e->getMessage());
+}
+
+
+// Requete du film en question
+$sql = "SELECT * FROM ticket WHERE id=:id";
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([
+    ":id" => $_GET["id"],
+]);
+
+$ticket = $stmt->fetch();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,10 +70,10 @@
 
             <div class="Right-buttons">
                 <div class="Edit-button">
-                    <button>✏️ Edit Ticket</button>
+                    <button onclick="window.location.href='./Update-Tickets.php'">✏️ Edit Ticket</button>
                 </div>
                 <div class="Supression-button">
-                    <button>Supprimer le ticket</button>
+                    <button onclick="location.href='../Php/Delete_Ticket.php?id=<?= $ticket["id"] ?>'">Supprimer le ticket</button>
                 </div>
             </div>
             
@@ -53,9 +81,9 @@
         
 
         <div class="Ticket-cadre">   
-            <h3>Client:</h3><p> Client Name</p>
-            <h3>Project:</h3><p> Project Name</p>
-            <h3>Description:</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <h3>Client:</h3><p> <?= $ticket["client"]?></p>
+            <h3>Project:</h3><p> <?= $ticket["project"]?></p>
+            <h3>Description:</h3> <p><?= $ticket["project"]?></p>
             <ul>
                 
             </ul>

@@ -26,8 +26,9 @@ try {
 
 
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $sql = "INSERT INTO ticket (title, client, users, statut, facturable, `date`) VALUES (:title, :client, :users, :statut, :facturable, :date)";
+if ($_SERVER["REQUEST_METHOD"] === "POST") { 
+
+    $sql = "INSERT INTO ticket (title, client, project, `description`, users, statut, facturable, `date`) VALUES (:title, :client, :project,:description, :users, :statut, :facturable, :date)";
     $stmt = $pdo->prepare($sql);
 
 
@@ -35,6 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->execute([
         ":title"   => $_POST["ticket-title"],
         ":client"   => $_POST["ticket-client"],
+        ":project"   => $_POST["project"],
+        ":description"   => $_POST["description"],
         ":users"   => 0,
         ":statut"   => 0,
         ":facturable" => isset($_POST["facturable"]) ? 1 : 0,
@@ -46,6 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
 }
 
-header("location:../pages/Forms-Ticket.php");
+header("location:../pages/Tickets-List.php");
 
 ?>

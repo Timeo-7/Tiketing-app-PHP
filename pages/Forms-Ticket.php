@@ -15,37 +15,10 @@ try {
 }
 
 
-
-
-$errors = [];
-$success = false;
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $title  = trim($_POST['ticket-title'] ?? '');
-    $client = trim($_POST['ticket-client'] ?? '');
-    $description = trim($_POST['description'] ?? '');
-    $project = $_POST['projet'] ?? '';
-    $collaborators = trim($_POST['colaborators'] ?? '');
-    $accept = isset($_POST['accept']) ? 1 : 0;
-
-    // Validation
-    if (empty($title)) {
-        $errors['title'] = "Le titre est obligatoire.";
-    }
-
-    if (empty($client)) {
-        $errors['client'] = "Le client est obligatoire.";
-    }
-
-    if (empty($errors)) {
-        $success = true;
-    }
-}
-    
-    if ($success) {
-            echo "Formulaire envoyé";
-        }     
+// 3 : on récupère les films pour les afficher dans le tableau
+    $sql = "SELECT * FROM ticket";
+    $stmt = $pdo->query($sql);
+    $tickets = $stmt->fetchAll();
 
 
 ?>
@@ -109,9 +82,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="description">Description:</label>
                 <textarea id="description" name="description"></textarea>
                 <br>
-                <label for="projet">Project:</label>
-                <select type="text" id="projet" name="projet">
-                    <option value="project1">No Project</option>
+                <label for="project">Project:</label>
+                <select id="project" name="project" required>
+                    <option value="No Project">No Project</option>
                     <option value="project1">Project 1</option>
                     <option value="project2">Project 2</option>
                 </select>
