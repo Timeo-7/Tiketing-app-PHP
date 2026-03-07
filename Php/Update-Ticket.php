@@ -46,8 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     
     $ticketForm = new TicketForm($_POST);
-    
-   
+
 
     if ($ticketForm->update($pdo, $ticket["id"])) {
         header("location:../pages/Tickets.php?id=".$ticket['id']);

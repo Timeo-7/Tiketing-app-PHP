@@ -53,9 +53,12 @@ class TicketForm {
             return false;
         }
 
-        
+        if($this->idProject == "No project"){
+            $this->idProject = 0;
+            $this->project = "No project";
+        }
 
-        if($this->idProject){
+        if($this->idProject && $this->idProject != "No project"){
             $stmt = $pdo->prepare("SELECT title FROM project WHERE id = :id");
             $stmt->execute([':id' => $this->idProject]);
             $projectData = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -102,6 +105,34 @@ class TicketForm {
             return false;
         }
 
+        
+        if($this->idProject == "No project"){
+            $this->idProject = 0;
+            $this->project = "No project";
+        }
+        
+
+        if($this->idProject && $this->idProject != "No project"){
+            $stmt = $pdo->prepare("SELECT title FROM project WHERE id = :id");
+            $stmt->execute([':id' => $this->idProject]);
+            $projectData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($projectData) {
+            $this->project = $projectData['title'];
+            } else {
+                $this->project = "No project";
+            }
+        }
+
+        
+        if($this->users === NULL){
+            $this->users = 0;
+        }
+        if($this->statut === NULL){
+            $this->statut = 0;
+        }
+
+
         try {
             $sql = "UPDATE ticket 
                 SET title = :title, 
@@ -117,6 +148,9 @@ class TicketForm {
                 WHERE id = :id";
             
             $stmt = $pdo->prepare($sql);
+
+            
+
             
             $stmt->execute([
                 ":title"          => $this->title,
@@ -132,11 +166,7 @@ class TicketForm {
                 ":id"             => $id
             ]);
 
-            if ($stmt->rowCount() === 0) {
-                $this->errors["database"] = "Aucun ticket trouvé avec cet ID ou aucune modification effectuée.";
-                return false;
-            }
-
+            
             return true;
             
         } catch (PDOException $e) {

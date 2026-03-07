@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ProjectForm = new ProjectForm($_POST);
     
 
-
     if ($ProjectForm->update($pdo, $project["id"])) {
 
         header("location:../pages/Project.php?id=".$project['id']);

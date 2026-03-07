@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
     $ticketForm = new TicketForm($_POST);
-    var_dump("hi");
+    
 
     if ($ticketForm->save($pdo)) {
         header("location:../pages/Tickets-List.php");

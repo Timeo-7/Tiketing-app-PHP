@@ -92,15 +92,15 @@ $ticket = $stmt->fetch();
                 <label for="description">Description:</label>
                 <textarea id="description" name="description" value="<?= $ticket["description"] ?>"></textarea>
                 <br>
-                <label for="project">Project:</label>
-                <select id="project" name="project" required>
+                <label for="idProject">Project:</label>
+                <select id="idProject" name="idProject">
                     <option value="No project">No project</option>
                     <?php foreach ($projects as $project): ?>
-                        <option value="<?= $project["title"] ?>" <?= ($ticket["project"] === $project["title"]) ? "selected" : "" ?> ><?= $project["title"] ?></option>
+                        <option value="<?= $project["id"] ?>"><?= $project["title"] ?></option>
                     <?php endforeach?>
                 </select>
-                <label for="colaborators">Colaborators:</label>
-                <input type="text" id="colaborators" name="colaborators" value="<?= $ticket["collaborators"] ?>"></input>
+                <label for="collaborators">Collaborators:</label>
+                <input type="text" id="collaborators" name="collaborators" value="<?= $ticket["collaborators"] ?>"></input>
 
                 <label for="date">Date:</label>
                 <input type="date" id="date" name="date" value="<?= $ticket["date"] ?>"></input>

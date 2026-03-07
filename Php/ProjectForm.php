@@ -67,7 +67,6 @@ class ProjectForm {
     // Mettre à jour un projet existant
     public function update($pdo, $id)
     {
-        var_dump("hi");
         if (!$this->validate()) {
             return false;
         }
@@ -93,6 +92,19 @@ class ProjectForm {
             ":waitingTickets"    => $this->waitingTickets,
             ":contract"         => $this->contract,
             ":id"               => $id
+        ]);
+
+
+        //UPDATE TICKETS WITH PROJECT ID
+
+        // ID du projet
+        $projectId = $id;
+        $newProjectTitle = $this->title;
+
+        $stmt2 = $pdo->prepare("UPDATE ticket SET project = :title WHERE idProject = :id");
+        $stmt2->execute([
+            ':title' => $newProjectTitle,
+            ':id'    => $projectId
         ]);
 
         return true;
