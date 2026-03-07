@@ -21,7 +21,7 @@ class TicketForm {
         $this->client = trim($data["ticket-client"] ?? "");
         $this->description = trim($data["description"] ?? "");
         $this->project = $data["project"] ?? "No Project";
-        $this->collaborators = trim($data["colaborators"] ?? "");
+        $this->collaborators = trim($data["collaborators"] ?? "");
         $this->date = $data["date"] ?? "";
         $this->facturable = isset($data["facturable"]) ? 1 : 0;
         $this->idProject = $data["idProject"] ?? null;
@@ -48,9 +48,25 @@ class TicketForm {
     // Créer un nouveau ticket en base de données
     public function save($pdo)
     {
+        
         if (!$this->validate()) {
             return false;
         }
+
+        
+
+        if($this->idProject){
+            $stmt = $pdo->prepare("SELECT title FROM project WHERE id = :id");
+            $stmt->execute([':id' => $this->idProject]);
+            $projectData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($projectData) {
+            $this->project = $projectData['title'];
+            } else {
+                $this->project = "No project";
+            }
+        }        
+
 
         try {
             $sql = "INSERT INTO ticket (title, client, project, `description`, collaborators, users, statut, `date`, facturable, idProject) 

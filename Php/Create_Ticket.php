@@ -1,4 +1,7 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 // Inclusion de la classe TicketForm
 require_once 'TicketForm.php';
 
@@ -34,16 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
     $ticketForm = new TicketForm($_POST);
+    var_dump("hi");
 
-    dd($ticketForm["idProject"]);
-    
     if ($ticketForm->save($pdo)) {
         header("location:../pages/Tickets-List.php");
+        exit();
     } else {
         $errors = $ticketForm->getErrors();
+        exit();
     }
 }
-
-
 
 ?>

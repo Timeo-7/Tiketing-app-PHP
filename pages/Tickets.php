@@ -22,8 +22,6 @@ $stmt->execute([
 ]);
 
 $ticket = $stmt->fetch();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -93,8 +91,8 @@ $ticket = $stmt->fetch();
                     <th colspan="2">Ticket Statue</th>
                 </tr>
                 <tr>
-                    <td>idProject : </td>
-                    <td><?php $ticket["idProject"]?></td>
+                    <td>project : </td>
+                    <td><?= $ticket["project"]?></td>
                 </tr>
                 <tr>
                     <td>Nombre de personnes concernées: </td>

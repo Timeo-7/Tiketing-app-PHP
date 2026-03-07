@@ -90,10 +90,10 @@ try {
 
                
 
-                <label for="colaborators">Colaborators:</label>
-                <input type="text" id="colaborators" name="colaborators"></input>
+                <label for="collaborators">Collaborators:</label>
+                <input type="text" id="collaborators" name="collaborators"></input>
 
-                <label for="date">Colaborators:</label>
+                <label for="date">Date:</label>
                 <input type="date" id="date" name="date"></input>
 
                 <label for="facturable"> Facturable : <input type="checkbox" id="facturable" name="facturable"> </label>
